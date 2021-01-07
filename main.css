@@ -3,6 +3,7 @@
     border: 2px solid black;
     display: grid;
     gap: 5px 5px;
+    grid-template-rows: repeat(7, 55px);
     grid-template-areas:
         "output output output output"
         "output output output output"
@@ -11,7 +12,6 @@
         "four five six multiply"
         "one two three minus"
         "zero dot equal plus";
-    height: 400px;
     margin: 50px auto;
     padding: 25px;
     width: 300px;
@@ -23,7 +23,7 @@
     grid-area: output;
 }
 
-#output > span {
+#output > p {
     align-self: end;
     font: 35px 'Courier New', sans-serif;
     justify-self: end;
@@ -50,9 +50,56 @@
     grid-area: divide;
 }
 
+#four {
+    grid-area: four;
+}
+
+#five {
+    grid-area: five;
+}
+
+#six {
+    grid-area: six;
+}
+
+#multiply {
+    grid-area: multiply;
+}
+
+#one {
+    grid-area: one;
+}
+
+#two {
+    grid-area: two;
+}
+
+#three {
+    grid-area: three;
+}
+
+#minus {
+    grid-area: minus;
+}
+
+#zero {
+    grid-area: zero;
+}
+
+#dot {
+    grid-area: dot;
+}
+
+#equal {
+    grid-area: equal;
+}
+
+#plus {
+    grid-area: plus;
+}
+
 button {
     background-color: #304C89; 
-    border: 0px;
     height: 100%;
     font: 20px 'Trebuchet MS', sans-serif;
     width: 100%;
