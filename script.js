@@ -9,27 +9,33 @@ function display() {
     for (let button of buttons) {
         button.addEventListener('click', function() {
             if (button.textContent == 'C') {
-                output.textContent = '';
+                output.textContent = '0';
                 operands = [];
                 input = '';
             }
-            else if (input.length >= 0 && button.textContent.match(/[0-9]/)) {
-                if (input.length == 0) {
-                    output.textContent = '';
+            else if (button.textContent.match(/[1-9]/)) {
+                if (operands.length == 1) {
+                    operands = [];
+                    input = '';
                 }
-                output.textContent += button.textContent;
+                output.textContent = button.textContent;
                 input += button.textContent;
             }
-            else if (input.length > 0 && button.textContent.match(/=/)) {
-                operands.push(parseInt(input));
-                operate(operands[1], operands[0], operands[2]);
-                input = '';
+            else if (output.textContent == '0' && button.textContent == '.') {
+                output.textContent += '.';
+                input += '0';
             }
-            else if (input.length > 0 && button.textContent.match(/\W/)) {
-                operands.push(parseInt(input));
-                operands.push(button.textContent);
-                output.textContent += button.textContent;
-                input = '';
+            else if (input.length > 0) {
+                if (button.textContent.match(/=/)) {
+                    operands.push(parseInt(input));
+                    operate(operands[1], operands[0], operands[2]);
+                    input = operands[0];
+                }
+                else if (button.textContent.match(/\W/)) {
+                    operands.push(parseInt(input));
+                    operands.push(button.textContent);
+                    input = '';
+                }
             }
         });
     }   
@@ -56,22 +62,22 @@ function operate(operator, num1, num2) {
         case '+':
             output.textContent = add(num1, num2);
             operands = [];
-            operands = add(num1, num2);
+            operands.push(add(num1, num2));
             break;
         case '-':
             output.textContent = subtract(num1, num2);
             operands = [];
-            operands = subtract(num1, num2);
+            operands.push(subtract(num1, num2));
             break;
         case '*':
             output.textContent = multiply(num1, num2);
             operands = [];
-            operands = multiply(num1, num2);
+            operands.push(multiply(num1, num2));
             break;
         case '/':
             output.textContent = divide(num1, num2);
             operands = [];
-            operands = divide(num1, num2);
+            operands.push(divide(num1, num2));
             break;
     }
 }
